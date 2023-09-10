@@ -1,25 +1,30 @@
 import React, {FC} from 'react';
 
-import {Node} from '../models/Node'
+import {getSelectedNode} from '../redux/selectors/treeSelectors';
+import {useAppSelector} from '../redux/hooks';
 
 export interface MainContentProps {
-    properties: Node['properties']
 }
 
 type Props = MainContentProps;
 
-const MainContent: FC<Props> = ({properties}) => {
+const MainContent: FC<Props> = () => {
+    const node = useAppSelector(state => getSelectedNode(state));
     return (
         <>
-            {Object.entries(properties).map(
-                (key, value) => {
-                    return (
-                        <div>
-                            <h1>{key}</h1>
-                            <span>{value}</span>
-                        </div>
-                    )
-                })}
+            {
+                node
+                    ? Object.entries(node.properties).map(
+                        ([key, value], index) => {
+                            return (
+                                <div key={index}>
+                                    <h1>{key}</h1>
+                                    <span>{value}</span>
+                                </div>
+                            )
+                        })
+                    : null
+            }
         </>
 
     );

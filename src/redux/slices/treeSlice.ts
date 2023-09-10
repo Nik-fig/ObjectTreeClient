@@ -18,10 +18,13 @@ const treeSlice = createSlice({
     initialState: initState,
     reducers: {
         addNode: (state, action: PayloadAction<Node>) => {
-            InsertNodeIntoTree(action.payload, state.tree)
+            InsertNodeIntoTree(action.payload, state.tree);
         },
+        setSelectedNode: (state, action: PayloadAction<Node>) => {
+            state.selectedNode = action.payload;
+        }
     }
 })
 
-export const {addNode} = treeSlice.actions;
+export const {addNode, setSelectedNode} = treeSlice.actions;
 export default treeSlice.reducer;

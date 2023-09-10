@@ -1,24 +1,24 @@
 import React, {FC} from 'react';
 import {Layout} from 'antd';
 
-import Tree, {TreeProps} from './Tree'
-import MainContent, {MainContentProps} from './MainContent'
+import Tree from './Tree'
+import MainContent from './MainContent'
 
 const {Sider, Content} = Layout;
 
-export interface MainLayoutProps extends MainContentProps, TreeProps {
+export interface MainLayoutProps {
 }
 
 type Props = MainLayoutProps;
 
-const MainLayout: FC<Props> = ({tree, properties}) => {
+const MainLayout: FC<Props> = () => {
     return (
         <Layout>
             <Sider>
-                <Tree tree={tree}/>
+                <Tree/>
             </Sider>
             <Content>
-                <MainContent properties={properties}/>
+                <MainContent/>
             </Content>
         </Layout>
     );
